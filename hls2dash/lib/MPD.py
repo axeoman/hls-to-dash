@@ -168,12 +168,12 @@ class Base:
     def getPeriod(self, idx):
         return self.periods[idx]
     def getAllPeriods(self):
-        return self.periods;
+        return self.periods
     def appendPeriod(self, period):
         self.periods.append(period)
     def asXML(self):
-        xml = '<?xml version="1.0"?>\n';
-        xml += '<!-- Created with hls2dash (version=%s) -->\n' % self.version;
+        xml = '<?xml version="1.0"?>\n'
+        xml += '<!-- Created with hls2dash (version=%s) -->\n' % self.version
         xml += '<!-- https://pypi.python.org/pypi/hls2dash -->\n'
         xml += '<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:scte35="urn:scte:scte35:2014:xml+bin" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="dynamic" minimumUpdatePeriod="PT10S" minBufferTime="PT1.500S" maxSegmentDuration="%s" availabilityStartTime="%s" publishTime="%s">\n' % (util.PT(self.maxSegmentDuration), self._getAvailabilityStartTime(), self._getPublishTime())
         if self.havePeriods():
@@ -200,7 +200,7 @@ class HLS(Base):
         res = re.match('^(.*)/.*.m3u8$', playlistlocator)
         if res:
             self.baseurl = res.group(1) + '/'
-	if re.match('^http', playlistlocator):
+        if re.match('^http', playlistlocator):
             self.isRemote = True
         self.currentPeriodIdx = 0
         self.profiles = []
@@ -222,7 +222,7 @@ class HLS(Base):
         self.context = Context(self.name, ctxdir)
 
     def setProfilePattern(self, profilepattern):
-        self.profilepattern = profilepatten
+        self.profilepattern = profilepattern
 
     def load(self):
         self.context.restore()

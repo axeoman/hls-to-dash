@@ -39,7 +39,7 @@ class Video(Base):
     def __init__(self, mimeType, codec):
         Base.__init__(self, mimeType, codec, 90000)
     def asXML(self):
-        idxlist = xrange(len(self.representations))
+        idxlist = range(len(self.representations))
         maxWidth = self.representations[max(idxlist, key = lambda x: self.representations[x].getWidth())].getWidth()
         maxHeight = self.representations[max(idxlist, key = lambda x: self.representations[x].getHeight())].getHeight()
         maxBandwidth = self.representations[max(idxlist, key = lambda x: self.representations[x].getBandwidth())].getBandwidth()
@@ -49,10 +49,10 @@ class Video(Base):
         xml = ''
         xml += '    <AdaptationSet mimeType="%s" codecs="%s" minWidth="%d" maxWidth="%d" minHeight="%d" maxHeight="%d" startWithSAP="1" segmentAlignment="true" minBandwidth="%d" maxBandwidth="%d">\n' % (self.mimeType, self.codec, minWidth, maxWidth, minHeight, maxHeight, minBandwidth, maxBandwidth)
         xml += '      <SegmentTemplate timescale="%d" media="$RepresentationID$_$Number$.dash" presentationTimeOffset="%s" startNumber="%s">\n' % (self.timescale, self.presentationTimeOffset, self.startNumber)
-        xml += '        <SegmentTimeline>\n';
+        xml += '        <SegmentTimeline>\n'
         for s in self.segments:
             xml += s.asXML()
-        xml += '        </SegmentTimeline>\n';
+        xml += '        </SegmentTimeline>\n'
         xml += '      </SegmentTemplate>\n'
         for r in self.representations:
             xml += r.asXML()

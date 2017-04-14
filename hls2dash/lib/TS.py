@@ -50,7 +50,7 @@ class Remote(Base):
             c.setopt(c.URL, self.uri)
             c.setopt(c.WRITEDATA, self.downloadedFile)
             c.perform()
-            c.close
+            c.close()
             self.downloadedFile.close()
     def probe(self):
         self.download()
