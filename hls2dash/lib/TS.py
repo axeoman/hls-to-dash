@@ -12,6 +12,7 @@ import os
 from hls2dash.lib.TSRemux import tsremux
 from hls2dash import debug
 
+
 class Base:
     def __init__(self):
         self.startTime = 0
